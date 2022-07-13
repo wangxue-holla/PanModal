@@ -692,15 +692,18 @@ private extension PanModalPresentationController {
      */
     func observe(scrollView: UIScrollView?) {
         scrollObserver?.invalidate()
-        scrollObserver = scrollView?.observe(\.contentOffset, options: .old) { [weak self] scrollView, change in
+        scrollObserver = scrollView?.observe(\.contentOffset, options: [.old, .new]) { scrollView, change in
+            DispatchQueue.main.async { [weak self] in
+                guard let `self` = self else { return }
+                /**
+                 Incase we have a situation where we have two containerViews in the same presentation
+                 */
+                guard self.containerView != nil
+                    else { return }
+                guard change.oldValue != change.newValue else { return }
 
-            /**
-             Incase we have a situation where we have two containerViews in the same presentation
-             */
-            guard self?.containerView != nil
-                else { return }
-
-            self?.didPanOnScrollView(scrollView, change: change)
+                self.didPanOnScrollView(scrollView, change: change)
+            }
         }
     }
 
