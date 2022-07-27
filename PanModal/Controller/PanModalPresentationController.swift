@@ -692,7 +692,7 @@ private extension PanModalPresentationController {
      */
     func observe(scrollView: UIScrollView?) {
         scrollObserver?.invalidate()
-        scrollObserver = scrollView?.observe(\.contentOffset, options: [.old, .new]) { scrollView, change in
+        scrollObserver = scrollView?.observe(\.contentOffset, options: [.old, .new]) { [weak self] scrollView, change in
             DispatchQueue.main.async { [weak self] in
                 guard let `self` = self else { return }
                 /**
