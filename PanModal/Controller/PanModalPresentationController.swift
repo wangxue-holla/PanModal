@@ -656,6 +656,7 @@ private extension PanModalPresentationController {
         
         guard presentedView.frame.origin.y > shortFormYPosition else {
             backgroundView.dimState = .max
+            presentable?.updatedimState(to: .max)
             return
         }
 
@@ -665,7 +666,9 @@ private extension PanModalPresentationController {
          Once presentedView is translated below shortForm, calculate yPos relative to bottom of screen
          and apply percentage to backgroundView alpha
          */
-        backgroundView.dimState = .percent(1.0 - (yDisplacementFromShortForm / presentedView.frame.height))
+        let state: DimmedView.DimState = .percent(1.0 - (yDisplacementFromShortForm / presentedView.frame.height))
+        backgroundView.dimState = state
+        presentable?.updatedimState(to: state)
     }
 
     /**

@@ -17,6 +17,7 @@ public class DimmedView: UIView {
      Represents the possible states of the dimmed view.
      max, off or a percentage of dimAlpha.
      */
+    public
     enum DimState {
         case max
         case off

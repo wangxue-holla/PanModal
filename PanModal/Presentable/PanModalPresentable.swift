@@ -233,5 +233,12 @@ public protocol PanModalPresentable: AnyObject {
      Default value is an empty implementation.
      */
     func panModalDidDismiss()
+
+    /**
+     Notifies the delegate after the state of the dimmed view changed.
+
+     Default value is an empty implementation.
+     */
+    func updatedimState(to state: DimmedView.DimState)
 }
 #endif

@@ -124,5 +124,8 @@ public extension PanModalPresentable where Self: UIViewController {
     func panModalDidDismiss() {
 
     }
+
+    func updatedimState(to state: DimmedView.DimState) {
+    }
 }
 #endif
