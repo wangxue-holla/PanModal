@@ -94,7 +94,7 @@ public class PanModalPresentationAnimator: NSObject {
         }, config: presentable) { [weak self] didComplete in
             // Calls viewDidAppear and viewDidDisappear
             fromVC.endAppearanceTransition()
-            transitionContext.completeTransition(didComplete)
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             self?.feedbackGenerator = nil
         }
     }
@@ -121,7 +121,7 @@ public class PanModalPresentationAnimator: NSObject {
             fromVC.view.removeFromSuperview()
             // Calls viewDidAppear and viewDidDisappear
             toVC.endAppearanceTransition()
-            transitionContext.completeTransition(didComplete)
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 
